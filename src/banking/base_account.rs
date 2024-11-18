@@ -1,17 +1,25 @@
 use super::account::Account;
+use uuid::Uuid;
+
 
 pub struct BaseAccount {
+    pub id: Uuid, 
     pub balance: f64,
     pub loan: f64,
 }
 
 impl BaseAccount {
     pub fn new(balance: f64) -> Self {
-        BaseAccount { balance, loan: 0.0 }
+        let id = Uuid::new_v4();
+        BaseAccount { id, balance, loan: 0.0 }
     }
 }
 
 impl Account for BaseAccount {
+    fn get_id(&self) -> String {
+        self.id.to_string()
+    }
+
     fn get_balance(&self) -> f64 {
         self.balance
     }

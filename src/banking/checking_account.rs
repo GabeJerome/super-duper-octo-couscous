@@ -16,6 +16,10 @@ impl CheckingAccount {
 }
 
 impl Account for CheckingAccount {
+    fn get_id(&self) -> String {
+        self.base.id.to_string()
+    }
+
     fn get_balance(&self) -> f64 {
         self.base.get_balance()
     }

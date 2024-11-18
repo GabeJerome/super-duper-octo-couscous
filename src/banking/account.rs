@@ -3,4 +3,5 @@ pub trait Account {
     fn deposit(&mut self, amount: f64);
     fn withdraw(&mut self, amount: f64) -> Result<(), String>;
     fn take_loan(&mut self, loan_amount: f64);
+    fn get_id(&self) -> String;
 }
