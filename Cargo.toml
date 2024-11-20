@@ -4,3 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+unique_id = "0.1.5"
+uuid = "1.11.0"
