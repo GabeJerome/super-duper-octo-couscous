@@ -3,14 +3,14 @@ use super::institution::Institution;
 use super::membership::Membership;
 use crate::banking::account::Account;
 
-pub struct CresditUnion {
+pub struct CreditUnion {
     pub base: BaseInstitution,
     pub membership: Membership,
 }
 
-impl CresditUnion {
+impl CreditUnion {
     pub fn new(name: String, address: String, membership: Membership) -> Self {
-        CresditUnion {
+        CreditUnion {
             base: BaseInstitution::new(name, address),
             membership: membership,
         }
@@ -21,7 +21,7 @@ impl CresditUnion {
     }
 }
 
-impl Institution for CresditUnion {
+impl Institution for CreditUnion {
     fn name(&self) -> &str {
         &self.base.name
     }

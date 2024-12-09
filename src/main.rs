@@ -5,7 +5,7 @@ use crate::banking::account::Account;
 use banking::checking_account::CheckingAccount;
 use banking::savings_account::SavingsAccount;
 use institution::bank::Bank;
-use institution::credit_union::CresditUnion;
+use institution::credit_union::CreditUnion;
 use institution::institution::Institution;
 use institution::membership::Membership;
 
@@ -22,7 +22,7 @@ fn main() {
     println!("Savings balance: {}", savings.get_balance());
 
     let mut bank = Bank::new("First Bank".to_string(), "4670 E BLVD".to_string());
-    let mut credit_union = CresditUnion::new(
+    let mut credit_union = CreditUnion::new(
         "Dakotah Credit".to_string(),
         "67544 W BLVD".to_string(),
         Membership::Gold,
