@@ -2,16 +2,16 @@ mod banking;
 mod institution;
 
 use crate::banking::account::Account;
+use crate::banking::loans::loan::Loan;
+use crate::banking::utils::format_dollar;
 use banking::checking_account::CheckingAccount;
+use banking::loans::auto_loan::AutoLoan;
+use banking::loans::mortgage::Mortgage;
 use banking::savings_account::SavingsAccount;
 use institution::bank::Bank;
 use institution::credit_union::CreditUnion;
 use institution::institution::Institution;
 use institution::membership::Membership;
-use crate::banking::utils::format_dollar;
-use crate::banking::loans::loan::Loan;
-use banking::loans::auto_loan::AutoLoan;
-use banking::loans::mortgage::Mortgage;
 
 fn marcus_stuff() {
     let mut checking: CheckingAccount = CheckingAccount::new(500.0, 200.0);
@@ -31,16 +31,19 @@ fn marcus_stuff() {
     credit_union.base.add_account(Box::new(checking));
     credit_union.apply_annual_fee();
 
+    println!("\n--- Apply Annual Fees ---");
+
     for account in bank.accounts() {
-        println!("Account balance: {}", account.get_balance());
+        println!("Account balance: {}", format_dollar(account.get_balance()));
     }
 
     for account in credit_union.accounts() {
-        println!("Account balance: {}", account.get_balance());
+        println!("Account balance: {}", format_dollar(account.get_balance()));
     }
 }
 
 fn cade_stuff() {
+    println!("\n--- Creating & Adding Accounts ---");
     let mut checking = CheckingAccount::new(500.0, 200.0);
     let mut savings = SavingsAccount::new(1000.0, 0.02);
 
@@ -48,7 +51,7 @@ fn cade_stuff() {
 
     checking.deposit(150.0);
     savings.apply_interest();
-  
+
     println!(
         "Checking balance: {}",
         format_dollar(checking.get_balance())
