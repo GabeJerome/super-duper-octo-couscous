@@ -1,3 +1,6 @@
+// Author: Gabe Jerome
+// Description: The parent trait of a loan
+
 pub trait Loan {
     fn calculate_minimum_monthly_payment(&self) -> f64;
     fn total_interest(&self) -> f64;

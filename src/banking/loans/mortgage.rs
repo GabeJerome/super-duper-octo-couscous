@@ -1,3 +1,8 @@
+// Author: Gabe Jerome
+// Description: This file has code for a mortgage. A mortgage is an
+// implementation of a Loan with additional property value and property tax
+// rate.
+
 use crate::banking::loans::loan::Loan;
 use crate::banking::utils::format_dollar;
 
@@ -10,18 +15,29 @@ pub struct Mortgage {
 }
 
 impl Loan for Mortgage {
+    // Description: Calcluates the minimum monthly payment to pay off a mortgage in
+    // time.
+    // Parameter: self
+    // Return: The minimum monthly payment as a float 64
     fn calculate_minimum_monthly_payment(&self) -> f64 {
         let rate = self.annual_interest_rate / 12.0 / 100.0;
         let n = (self.term_years * 12) as f64;
         self.principal * rate / (1.0 - (1.0 + rate).powf(-n))
     }
 
+    // Description: Calcuates the total monthly interest on a payment
+    // Parameter: self
+    // Return: The total monthly interest on a payment as a float 64
     fn total_interest(&self) -> f64 {
         let total_payments =
             self.calculate_minimum_monthly_payment() * (self.term_years * 12) as f64;
         total_payments - self.principal
     }
 
+    // Description: Calculates the number of months it will take to pay off the mortgage with a given monthly payment.
+    // Parameter: monthly_payment - a hypothetical monthly payment to determine the number of months as a float 64
+    // Return: The number of months it will take to pay off the mortgage as an
+    // unsigned integer 32
     fn calculate_payoff_time(&self, monthly_payment: f64) -> u32 {
         let monthly_interest_rate = self.annual_interest_rate / 100.0 / 12.0;
 
@@ -38,6 +54,12 @@ impl Loan for Mortgage {
         payoff_time.ceil() as u32
     }
 
+    // Description: Calculates how much money is saved by paying off the
+    // mortgage early.
+    // Parameter: num_months_early - The hypothetical number of months early
+    // the mortgage was paid off by as an unsigned integer 32
+    // Return: The amount of money saved by paying the loan off early as a
+    // float 64
     fn calculate_early_payment_savings(&self, num_months_early: u32) -> f64 {
         let monthly_rate = self.annual_interest_rate / 100.0 / 12.0;
         let total_months = self.term_years * 12;
@@ -66,6 +88,9 @@ impl Loan for Mortgage {
         total_interest_full_term - interest_paid_early
     }
 
+    // Description: Gets all the details of the Mortgage class
+    // Parameter: self
+    // Return: All the information in the mortgage as a string
     fn format_details(&self) -> String {
         format!(
             "Principal: {}\n\
@@ -90,6 +115,9 @@ impl Loan for Mortgage {
 }
 
 impl Mortgage {
+    // Description: Gets annual property tax of the home
+    // Parameter:self
+    // Return: The annual property tax of the home as a float 64
     pub fn calculate_property_tax(&self) -> f64 {
         self.property_value * self.property_tax_rate / 100.0
     }
