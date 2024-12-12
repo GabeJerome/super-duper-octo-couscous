@@ -9,7 +9,12 @@ use institution::credit_union::CreditUnion;
 use institution::institution::Institution;
 use institution::membership::Membership;
 
-fn marcus_stuff(checking: CheckingAccount, savings: SavingsAccount) {
+fn marcus_stuff() {
+    let mut checking: CheckingAccount = CheckingAccount::new(500.0, 200.0);
+    let mut savings: SavingsAccount = SavingsAccount::new(1000.0, 0.02);
+    checking.deposit(150.0);
+    savings.apply_interest();
+
     let mut bank = Bank::new("First Bank".to_string(), "4670 E BLVD".to_string());
     let mut credit_union = CreditUnion::new(
         "Dakotah Credit".to_string(),
@@ -43,5 +48,5 @@ fn main() {
     println!("Checking balance: {}", checking.get_balance());
     println!("Savings balance: {}", savings.get_balance());
 
-    marcus_stuff(checking, savings);
+    marcus_stuff();
 }
