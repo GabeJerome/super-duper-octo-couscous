@@ -1,5 +1,6 @@
 mod banking;
 mod institution;
+use std::io;
 
 use crate::banking::account::Account;
 use crate::banking::loans::loan::Loan;
@@ -26,19 +27,42 @@ fn marcus_stuff() {
         Membership::Gold,
     );
 
-    bank.add_account(Box::new(savings));
+    let account_to_remove = Box::new(SavingsAccount::new(1000.0, 0.02));
+    let savings_account = Box::new(savings);
+    bank.add_account(savings_account);
     bank.apply_annual_fee();
+    bank.add_investment_funds(10.00);
     credit_union.base.add_account(Box::new(checking));
     credit_union.apply_annual_fee();
+    credit_union.change_membership(Membership::Premium);
 
+    wait_for_enter();
     println!("\n--- Apply Annual Fees ---");
 
-    for account in bank.accounts() {
-        println!("Account balance: {}", format_dollar(account.get_balance()));
-    }
+    println!("Bank name: {}", bank.name());
+    println!("Bank address: {}", bank.address());
+    println!(
+        "Bank ivestment funds: {}",
+        format_dollar(bank.get_investment_funds())
+    );
 
+    for account in bank.accounts() {
+        println!(
+            "Bank account balance: {}",
+            format_dollar(account.get_balance())
+        );
+    }
+    bank.remove_account(account_to_remove);
+
+    println!("");
+    println!("Credit Union name: {}", credit_union.name());
+    println!("Credit Union address: {}", credit_union.address());
+    credit_union.change_membership(Membership::Standard);
     for account in credit_union.accounts() {
-        println!("Account balance: {}", format_dollar(account.get_balance()));
+        println!(
+            "Credit Union account balance: {}",
+            format_dollar(account.get_balance())
+        );
     }
 }
 
@@ -77,6 +101,7 @@ fn gabe_stuff() {
         annual_depreciation_rate: 15.0,
     };
 
+    wait_for_enter();
     println!("\n--- Mortgage ---");
     println!("{}", mortgage.format_details());
 
@@ -95,6 +120,7 @@ fn gabe_stuff() {
         format_dollar(mortgage.calculate_early_payment_savings(num_months_early))
     );
 
+    wait_for_enter();
     println!("\n--- Auto Loan ---");
     println!("{}", auto_loan.format_details());
 
@@ -114,8 +140,16 @@ fn gabe_stuff() {
     );
 }
 
+fn wait_for_enter() {
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read input");
+}
+
 fn main() {
     cade_stuff();
     marcus_stuff();
     gabe_stuff();
+    print!("\n");
 }

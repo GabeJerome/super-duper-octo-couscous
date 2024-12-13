@@ -1,3 +1,9 @@
+/*==========================================================================
+ * Author: Marcus Kane
+ * Description: This file is where we define the trait for the Institution
+ * that way we have it as an interface like fashion
+========================================================================== */
+
 use crate::banking::account::Account;
 
 pub trait Institution {
