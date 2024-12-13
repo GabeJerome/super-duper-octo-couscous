@@ -1,3 +1,9 @@
+/*==========================================================================
+ * Author: Marcus Kane
+ * Description: This file is where we define the enum and implementation
+ * of the Membership type so we can use it in out credit union with ease
+========================================================================== */
+
 pub enum Membership {
     Standard,
     Premium,
