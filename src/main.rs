@@ -13,7 +13,13 @@ use institution::bank::Bank;
 use institution::credit_union::CreditUnion;
 use institution::institution::Institution;
 use institution::membership::Membership;
-
+/*==========================================================================
+* Author: Marcus Kane
+* Description: This function runs the example tests for how Institutions 
+* could be used
+* Parameter: None
+* Return: None
+========================================================================== */
 fn marcus_stuff() {
     let mut checking: CheckingAccount = CheckingAccount::new(500.0, 200.0);
     let mut savings: SavingsAccount = SavingsAccount::new(1000.0, 0.02);
