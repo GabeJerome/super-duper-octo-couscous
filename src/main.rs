@@ -1,3 +1,9 @@
+// Authors: Marcus Kane, Cade Jacobson, Gabriel Jerome
+// Class: CSC 461 - Programming Languages
+// Description: This is a banking program written in Rust. This program
+// features multiple types of financial institutions, banking accounts, and
+// loans.
+
 mod banking;
 mod institution;
 use std::io;
@@ -15,7 +21,7 @@ use institution::institution::Institution;
 use institution::membership::Membership;
 /*==========================================================================
 * Author: Marcus Kane
-* Description: This function runs the example tests for how Institutions 
+* Description: This function runs the example tests for how Institutions
 * could be used
 * Parameter: None
 * Return: None
@@ -72,7 +78,6 @@ fn marcus_stuff() {
     }
 }
 
-
 /*==========================================================================
 * Author: Cade Jacobson
 * Description: This function runs the example tests for how all Accounts
@@ -97,6 +102,12 @@ fn cade_stuff() {
     println!("Savings balance: {}", format_dollar(savings.get_balance()));
 }
 
+// Author: Gabriel Jerome
+// Description: This function displays the capabilities of the loan classes by
+// computing interest paid on a load, the minimum loan payment, and the benefit
+// of paying off a loan early. It also prints the details of each type of loan.
+// Parameter: None
+// Return: None
 fn gabe_stuff() {
     let mortgage = Mortgage {
         principal: 300_000.0,
