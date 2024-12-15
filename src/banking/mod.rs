@@ -1,3 +1,7 @@
+/*==========================================================================
+* Author: Cade Jacobson
+* Description: Publish the modules used in this package
+========================================================================== */
 pub mod utils;
 pub mod account;
 pub mod base_account;
