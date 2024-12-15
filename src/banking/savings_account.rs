@@ -13,7 +13,7 @@ pub struct SavingsAccount {
 impl SavingsAccount {
     /*==========================================================================
     * Author: Cade Jacobson
-    * Description: This is the initializer for the checking account
+    * Description: This is the initializer for the savings account
     * Parameter: balance - a double indicating the amount stored in the account.
     * Parameter: interest_rate - a double indicating the savings rate for the account.
     * Return: this function returns a new instance of the SavingsAccount
