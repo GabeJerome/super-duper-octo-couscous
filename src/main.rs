@@ -72,6 +72,14 @@ fn marcus_stuff() {
     }
 }
 
+
+/*==========================================================================
+* Author: Cade Jacobson
+* Description: This function runs the example tests for how all Accounts
+* could be used
+* Parameter: None
+* Return: None
+========================================================================== */
 fn cade_stuff() {
     println!("\n--- Creating & Adding Accounts ---");
     let mut checking = CheckingAccount::new(500.0, 200.0);
